@@ -95,8 +95,18 @@ get "/" do
   erb :home
 end
 
+# Create a route that responds to `GET` requests at the `/search` path. Have
+# it respond with only the quotes that contain the word(s) specified in `params["terms"]`.
 get "/search" do
   @quote = search(params["terms"])
+
+  erb :home
+end
+
+# Create a route that responds to `GET` requests at `/authors/<author name>`
+# and returns all the quotes for that author.
+get "/authors" do
+  @author = quotes_by(params[:author])
 
   erb :home
 end
