@@ -106,8 +106,10 @@ end
 # Create a route that responds to `GET` requests at `/authors/<author name>`
 # and returns all the quotes for that author.
 get "/authors" do
-  @author = quotes_by(params[:author])
+  params[:author_name] # => will be equal to "Ada Lovelace" when the requested URL is "/authors?author_name=Ada%20Lovelace"
+end
 
-  erb :home
+get '/authors/:author_name' do
+  params[:author_name] # => will be equal to "Ada Lovelace" when the requested URL is "/authors/Ada%20Lovelace"
 end
 
